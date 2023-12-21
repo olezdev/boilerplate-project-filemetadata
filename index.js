@@ -6,10 +6,11 @@ require('dotenv').config()
 const app = express();
 
 app.use(cors());
-app.use('/public', express.static(process.cwd() + '/public'));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
-  res.sendFile(process.cwd() + '/views/index.html');
+  res.sendFile(__dirname + '/views/index.html')
 });
 
 const storage = multer.memoryStorage();
